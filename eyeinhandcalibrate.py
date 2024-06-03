@@ -4,6 +4,8 @@
 pip install numpy
 pip install transforms3d
 
+
+参考URL: https://blog.csdn.net/m0_68738477/article/details/129749404
 眼在手上，求解手眼标定的变换矩阵：
 
 T_base2end: 基座到末端，即末端在机械臂坐标系下的位姿
@@ -46,6 +48,8 @@ def quatMinimal2rot(q):
     return tfs.quaternions.quat2mat([w, q[0], q[1], q[2]])
  
  
+# (x,y,z,rx,ry,rz), [rx,ry,rz] is degree
+# 对应 T_base2end
 # hand = [1.1988093940033604, -0.42405585264804424, 0.18828251788562061, 151.3390418721659, -18.612399542280507,
 #         153.05074895025035,
 #         1.1684831621733476, -0.183273375514656, 0.12744868246620855, -161.57083804238462, 9.07159838346732,
@@ -64,6 +68,8 @@ hand = [
  
         ]
  
+# (x,y,z,rx,ry,rz), [rx,ry,rz] is degree
+# 对应 T_cam2target
 # camera = [-0.16249272227287292, -0.047310635447502136, 0.4077761471271515, -56.98037030812389, -6.16739631361851,
 #           -115.84333735802369,
 #           0.03955405578017235, -0.013497642241418362, 0.33975949883461, -100.87129330834215, -17.192685528625265,
@@ -132,3 +138,5 @@ MA = np.asarray(A).reshape(size * 3, 3)
 MB = np.asarray(B).reshape(size * 3, 1)
 Tcg = np.dot(np.linalg.pinv(MA), MB).reshape(3, )
 print(tfs.affines.compose(Tcg, np.squeeze(Rcg), [1, 1, 1]))
+
+# Tcg Rcg  -->   T_end2cam
