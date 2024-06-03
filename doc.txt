@@ -1,0 +1,12 @@
+
+
+
+机器人手眼标定原理简单介绍：
+https://zhuanlan.zhihu.com/p/103749589
+https://robot.czxy.com/docs/pcl/chapter05/handeye/#_3
+
+机器人手眼标定原理 公式推导：
+https://blog.csdn.net/qq_44903985/article/details/138394862
+
+python代码实现：
+https://blog.csdn.net/m0_68738477/article/details/129749404

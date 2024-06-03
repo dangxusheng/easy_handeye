@@ -80,6 +80,8 @@ class HandeyeCalibrationBackendOpenCV(object):
 
         method = HandeyeCalibrationBackendOpenCV.AVAILABLE_ALGORITHMS[algorithm]
 
+        
+        # R_cam2gripper, t_cam2gripper = cv2.calibrateHandEye(R_gripper2base,t_gripper2base, R_target2cam,t_target2cam, method)
         hand_camera_rot, hand_camera_tr = cv2.calibrateHandEye(hand_world_rot, hand_world_tr, marker_camera_rot,
                                                                marker_camera_tr, method=method)
         result = tfs.affines.compose(np.squeeze(hand_camera_tr), hand_camera_rot, [1, 1, 1])

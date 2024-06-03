@@ -66,13 +66,19 @@ class HandeyeSampler(object):
 
         # here we trick the library (it is actually made for eye_on_hand only). Trust me, I'm an engineer
         if self.handeye_parameters.eye_on_hand:
+            # 查找源坐标系 'source_frame' 到目标坐标系 'target_frame' 的变换
+            # transform = tfBuffer.lookup_transform('target_frame', 'source_frame', rospy.Time(0))
+            # robot_effector_frame -> robot_base_frame
             rob = self.tfBuffer.lookup_transform(self.handeye_parameters.robot_base_frame,
                                                  self.handeye_parameters.robot_effector_frame, time,
                                                  Duration(10))
         else:
+            # robot_base_frame -> robot_effector_frame
             rob = self.tfBuffer.lookup_transform(self.handeye_parameters.robot_effector_frame,
                                                  self.handeye_parameters.robot_base_frame, time,
                                                  Duration(10))
+        
+        # marker_frame -> cam
         opt = self.tfBuffer.lookup_transform(self.handeye_parameters.tracking_base_frame,
                                              self.handeye_parameters.tracking_marker_frame, time,
                                              Duration(10))

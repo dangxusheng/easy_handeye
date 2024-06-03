@@ -73,11 +73,13 @@ class HandeyeServer:
         return ehm.srv.SetAlgorithmResponse(success=True)
 
     # sampling
-
+    
     def _retrieve_sample_list(self):
         ret = ehm.msg.SampleList()
         for s in self.sampler.get_samples():
+            # marker_frame -> cam
             ret.camera_marker_samples.append(s['optical'].transform)
+            # robot_effector_frame -> robot_base_frame
             ret.hand_world_samples.append(s['robot'].transform)
         return ret
 

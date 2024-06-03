@@ -120,7 +120,9 @@ class RqtHandeyeCalibration(Plugin):
         self._widget.sampleListWidget.clear()
 
         for i in range(len(sample_list.hand_world_samples)):
+            # robot_effector_frame -> robot_base_frame
             formatted_robot_sample = format_sample(sample_list.hand_world_samples[i])
+            # marker_frame -> cam
             formatted_tracking_sample = format_sample(sample_list.camera_marker_samples[i])
             self._widget.sampleListWidget.addItem(
                 '{}) \n hand->world \n {} \n camera->marker\n {}\n'.format(i + 1, formatted_robot_sample,

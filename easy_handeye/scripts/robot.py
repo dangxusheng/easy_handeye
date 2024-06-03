@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import rospy
-
 from easy_handeye.handeye_server_robot import HandeyeServerRobot
 
 
